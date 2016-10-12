@@ -1,0 +1,78 @@
+.principal{
+	background-image: url("../img/fondo.jpg");
+	background-size: cover;
+}
+.logo{
+	background-size: cover;
+    width: 200px;
+    margin-top: 15%;
+}
+.content{
+	position: relative;
+    padding: 0;
+	height: 100vh;
+}
+.flex{
+	position: absolute;
+    bottom: 7%;
+    width: 100%;
+    padding: 0 25px;
+}
+footer{
+	margin-top: 1150px;
+	margin-bottom: 10px;
+}
+.boton{
+	width: 100%;
+    font-size: 20px;
+}
+.izq{
+	background-color: transparent;
+	border-color: black;
+	color: black;
+}
+.der{
+	background-image: url("../img/btncolor.png");
+	background-size: cover;
+	color: black;
+}
+/*---------------------------------*/
+.icono{
+	font-size: 25px;
+	margin-top: 25%;
+	color: #bbb;
+}
+.titulo{
+	font-size: 22px;
+	font-weight: bold;
+	margin: 3% 22%;
+}
+.borde{
+	border-bottom: 1px solid #bbb;
+}
+.margen{
+	margin: 10px 0 5px 0;
+}
+.bandera{
+	width: 20px;
+	height: 15px;
+	margin-right: 20%;
+}
+.botoncod{
+	border-right:1px solid transparent;
+}
+.codigo{
+	border-left: none;
+	padding-left: 0px;
+	box-shadow: none;
+}
+.codigo:focus {
+	outline: -webkit-focus-ring-color auto 0px;
+    outline-style: none;
+    box-shadow: none;
+    border-color: lightgrey;
+}
+.sgt{
+	background-color: #E71D36;
+	color: white;
+}
