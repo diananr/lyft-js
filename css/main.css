@@ -112,3 +112,70 @@ footer{
 .sinborde{
 	border:none;
 }
+.icono{
+	border:none;
+	color: black;
+	background-color: white;
+}
+/*    float: left;
+    position: absolute;
+    left: 0;
+    margin-left: 14px;*/
+.tamanoMapa{
+	width: 100%;
+	height: 100vh;
+}
+.encima{
+	position: relative;
+	z-index:100;
+}
+.circulo{
+	border-radius: 50%;
+	background-color: white;
+	border: 1px solid gray;
+	width: 50px;
+	height: 50px;
+}
+.izq{
+	position: absolute;
+	top: 10px;
+	left: 10px
+}
+.dere{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.icons{
+	font-size: 26px;
+	color: black;
+	margin: 23%;
+}
+.icons:hover{
+	text-decoration: none;
+	color: gray;
+}
+.logo2{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 10px;
+	left: 43%;
+}
+#fotoPerfil{
+	width: 100%;
+	height: 40vh;
+}
+.fecha{
+	border-radius: 5px;
+	background-color: #F3F5F5;
+	margin: 0 5%;
+	padding: 2% 0;
+}
+.margenlados{
+	margin: 5%;
+}
+.texto{
+	margin-left: 2%;
+}
+
