@@ -1,36 +1,6 @@
-var valDatos = function(){
-	if ($("#nomb").val().trim().length == 0 || $("#apell").val().trim().length == 0 || $("#email").val().trim().length == 0) {
-		alert("Complete todos los espacios");
-	}
-	if ($("#nomb").val().trim().length > 3 && $("#nomb").val().trim().length < 21) {
-		return true;
-	}
-	else
-		alert("Ingrese bien su nombre");
-
-	if ($("#apell").val().trim().length > 3 && $("#apell").val().trim().length < 21) {
-		return true;
-	}
-	else
-		alert("Ingrese bien su apellido");
-
-	var regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    if (!regexEmail.test($("#email").val())){
-        alert("Ingresa bien su email");
-    }
-    if ($("#email").val().trim().length > 6 && $("#email").val().trim().length < 51) {
-		return true;
-	}
-	else
-		alert("Ingrese bien su email");
-}
 var cargaPag = function(){
 	$("#numeros").keydown(validar);
-	// $num.keyup(comprobar);
-	$("#numeros").on("input", function(e){
-		validar(e);
-		comprobar(e);
-	});
+	$("#numeros").keyup(comprobar);
 	$("#celu").text(localStorage.getItem("celular")); 
 	$("#sgt2").click(compararCodigo);
 	$("#dig1").focus();
@@ -39,9 +9,12 @@ var cargaPag = function(){
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(todoBien, hayError);
 	}
+	$("#contacto").click(aparecePerfil);
+	$("#mitad").click(apareceMap);
 }
 
 $(document).ready(cargaPag);
+var entra = true;
 
 var validar = function(e){
 	var tecla = e.keyCode;
@@ -54,26 +27,30 @@ var validar = function(e){
 var comprobar = function(e){
 	var caracteres = $(e.target).val().length;
 	if (caracteres == 9){
-		$("#next").attr("href", "verify.html");
-		$("#next").click(generarCod);
+		$("#sgt1").attr("href", "verify.html");
+		$("#sgt1").click(generarCod);
 	}
 	else{
-		$("#next").removeAttr("href");
-		$("#next").unbind("click");
+		$("#sgt1").removeAttr("href");
+		$("#sgt1").unbind("click");
 	}
 }
 var generarCod = function(){
-	var codigo = "LAB";
-	for (var i = 0; i < 3; i++) {
-		var nums = Math.round(Math.random()*9);
-		codigo += nums;
+	if(entra){
+		var codigo = "LAB";
+		for (var i = 0; i < 3; i++) {
+			var nums = Math.round(Math.random()*9);
+			codigo += nums;
+		}
+		alert(codigo);
+
+		localStorage.setItem("guardarCod", codigo);
+
+		var obtNum = $("#numeros").val();
+		localStorage.setItem("celular", obtNum);
+
+		entra = false;
 	}
-	alert(codigo);
-
-	localStorage.setItem("guardarCod", codigo);
-
-	var obtNum = $("#numeros").val();
-	localStorage.setItem("celular", obtNum);
 }
 var compararCodigo = function(){
 	var obtenCod = localStorage.getItem("guardarCod");
@@ -102,6 +79,33 @@ var saltaFocus = function(e){
 		$(e.target).parent().prev().children().focus();
 	}
 }
+var valDatos = function(){
+	var cumple = true;
+	if($("#nomb").val().trim().length == 0 || $("#apell").val().trim().length == 0 || $("#email").val().trim().length == 0) {
+	 	alert("Complete todos los espacios");
+	 	cumple = false;
+	}
+	if(($("#nomb").val().trim().length < 3 || $("#nomb").val().trim().length > 21) || ($("#apell").val().trim().length < 3 || $("#apell").val().trim().length > 21)){
+		alert("Complete bien sus datos");
+		cumple = false;
+	}
+	if(($("#email").val().trim().length < 6 || $("#email").val().trim().length > 51)){
+		alert("Ingrese un correo válido");
+		cumple = false;
+	}
+	var regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+	if (!regexEmail.test($("#email").val())){
+		alert("Ingrese un correo válido");
+		cumple = false;
+	}
+	if ($("#checkbox").is(":checked") == false){
+		alert("Acepte los terminos y condiciones");
+		cumple = false;
+	}
+	if (cumple){
+		$("#sgt3").attr("href", "map.html");
+	}
+}
 var todoBien = function(pos){
 	var lat = pos.coords.latitude;
 	var lon = pos.coords.longitude;
@@ -120,11 +124,17 @@ var todoBien = function(pos){
 	var mapa = new google.maps.Map(document.getElementById("map"), misOpciones);
 
 	var marcador = new google.maps.Marker({
-		pos: latlon,
-		mapa: mapa,
+		position: latlon,
+		map: mapa,
 		title: "Estas aqui"
 	});
 }
 var hayError = function (error){
 	alert("ERROR");
+}
+var aparecePerfil = function(){
+	$("#mitad").removeClass("ocultar");
+}
+var apareceMap = function(){
+	$("#mitad").addClass("ocultar");
 }

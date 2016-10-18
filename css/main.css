@@ -2,60 +2,52 @@
 	background-image: url("../img/fondo.jpg");
 	background-size: cover;
 	height: 100vh;
-	background-position: center;
-	background-repeat: no-repeat;
+	position: relative;
 }
 .logo{
 	background-size: cover;
-    width: 200px;
-    margin-top: 15%;
-}
-.content{
-	position: relative;
-    padding: 0;
-	height: 100vh;
-}
-
-.flex{
-	position: absolute;
-    bottom: 7%;
-    width: 100%;
-    padding: 0 25px;
-}
-footer{
-	margin-top: 1150px;
-	margin-bottom: 10px;
+    margin-top: 10%;
+    width: 90%;
 }
 .boton{
-	width: 100%;
+	bottom: 10%;
+    color: black;
     font-size: 20px;
+	position: absolute;
+	width: 40%;
 }
-.izq{
+.log{
 	background-color: transparent;
 	border-color: black;
-	color: black;
+	left: 5%;	
 }
-.der{
+.sing{
 	background-image: url("../img/btncolor.png");
 	background-size: cover;
-	color: black;
+	right: 5%;
 }
-/*---------------------------------*/
-.icono{
-	font-size: 25px;
-	margin-top: 25%;
+/*-------------FIN INDEX--------------------*/
+.f-sup{
+	position: relative;
+}
+.i-atras{
 	color: #bbb;
+	font-size: 25px;
+	left: 3%;
+	position: absolute;
+	margin-top: 3%;
 }
 .titulo{
 	font-size: 22px;
 	font-weight: bold;
 	margin: 3% 22%;
 }
-.borde{
+.borde-inf{
 	border-bottom: 1px solid #bbb;
+	margin: 0;
 }
-.margen{
-	margin: 10px 0 5px 0;
+.margen-aa{
+	margin: 10px 0;
 }
 .bandera{
 	width: 20px;
@@ -65,28 +57,29 @@ footer{
 .botoncod{
 	border-right:1px solid transparent;
 }
-.codigo{
+.no-focus{
 	border-left: none;
 	padding-left: 0px;
 	box-shadow: none;
 }
-.codigo:focus {
+.no-focus:focus {
 	outline: -webkit-focus-ring-color auto 0px;
     outline-style: none;
     box-shadow: none;
     border-color: lightgrey;
 }
-.sgt{
+.next{
 	background-color: #E71D36;
 	color: white;
+	width: 100%;
 }
-/*--------------------------*/
-.segTitulo{
-	font-size: 20px;
+/*------------FIN SING UP--------------*/
+.tit2{
+	font-size: 18px;
     font-weight: bold;
-    margin: 3% -2%;
+    margin: 4% 22%;
 }
-.margensup{
+.mgn-vrf-d{
 	margin-top: 100px;
 	margin-bottom: 10px;
 }
@@ -103,24 +96,19 @@ footer{
 	margin: 5px 0;
 	text-align: center;
 }
-.margeninf{
-	margin-bottom: 50px;
-}
+/*---------FIN VERIFY----------------------*/
 .two-fields input{
 	width: 50% !important;
 }
-.sinborde{
-	border:none;
+.sn-mrg{
+	margin: 0;
 }
-.icono{
-	border:none;
+.icn-dats{
 	color: black;
-	background-color: white;
+	border:none;
+	background-color:white;
 }
-/*    float: left;
-    position: absolute;
-    left: 0;
-    margin-left: 14px;*/
+/*--------FIN DATOS-------------------------*/
 .tamanoMapa{
 	width: 100%;
 	height: 100vh;
@@ -151,10 +139,6 @@ footer{
 	color: black;
 	margin: 23%;
 }
-.icons:hover{
-	text-decoration: none;
-	color: gray;
-}
 .logo2{
 	width: 50px;
 	height: 50px;
@@ -162,9 +146,54 @@ footer{
 	top: 10px;
 	left: 43%;
 }
-#fotoPerfil{
+/*-------fin vista mapa-------*/
+.semiperfil{
+	position: absolute;
+	z-index: 100;
 	width: 100%;
-	height: 40vh;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.5);
+}
+.ocultar{
+	display: none;
+}
+.fondoBlanco{
+	background-color: white;
+	position: absolute;
+	height: 100vh;
+	width: 70%;
+}
+.circuloFoto{
+	border-radius: 50%;
+	border: 1px solid #bbb;
+	padding: 1%;
+	width: 50%;
+}
+.margenes{
+	margin: 3% 0;
+}
+.icn-mgd{
+	margin-left: 5%;
+}
+.margenfrase{
+	margin-left: 5%;
+	display: inline-block;
+}
+/*-------FIN SEMI PERFIL-------*/
+.fondoFoto{
+	position: relative;
+	width: 100%;
+	height: 50vh;
+}
+.puntos{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+.btnedit{
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }
 .fecha{
 	border-radius: 5px;
@@ -172,10 +201,12 @@ footer{
 	margin: 0 5%;
 	padding: 2% 0;
 }
+.icns-pfl{
+	color: black;
+}
 .margenlados{
 	margin: 5%;
 }
 .texto{
 	margin-left: 2%;
 }
-

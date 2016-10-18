@@ -10,15 +10,11 @@
 	<body>
 		<header>
 			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-2">
-						<a href="index.html" class="glyphicon glyphicon-chevron-left icono"></a>
-					</div>
-					<div class="col-xs-10">
-						<h1 class="titulo">Sing up</h1>
-					</div>
+				<div class="row text-center f-sup">
+					<a href="index.html" class="glyphicon glyphicon-chevron-left i-atras"></a>
+					<h1 class="titulo">Sing up</h1>
 				</div>
-				<div class="row borde">
+				<div class="row borde-inf">
 					<div class="col-xs-12 text-center">
 						<p>Join now for free ride credit</p>
 					</div>
@@ -27,31 +23,28 @@
 		</header>
 		<section>
 			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="form-group two-fields">
-					        <div class="input-group">
-					        	<span class="input-group-addon glyphicon glyphicon-user icono"></span>
-								<input type="text" required class="form-control" id="nomb" placeholder="First name">
-								<input type="text" required class="form-control" id="apell" placeholder="Last name">
-					        </div>
-				      	</div>
-					</div>
+				<div class="row margen-aa">
+					<div class="form-group two-fields sn-mrg">
+				        <div class="input-group">
+				        	<span class="input-group-addon glyphicon glyphicon-user icn-dats"></span>
+							<input type="text" required class="form-control" id="nomb" placeholder="First name">
+							<input type="text" required class="form-control" id="apell" placeholder="Last name">
+				        </div>
+			      	</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="input-group">
-    						<span class="input-group-addon glyphicon glyphicon-envelope icono"></span>
+    						<span class="input-group-addon glyphicon glyphicon-envelope icn-dats"></span>
     						<input type="text" class="form-control" id="email" placeholder="Email">
 						</div>
 					</div>
 				</div>
-				<div class="row text-center margen">
-					<label class="checkbox-inline"><input type="checkbox" value="">I agree to Lyft's <a href="#">Terms of Service</a></label>
+				<div class="row text-center margen-aa">
+					<label class="checkbox-inline"><input type="checkbox" 
+					id="checkbox">I agree to Lyft's <a href="#">Terms of Service</a></label>
 				</div>
-				<div class="row">
-					<a class="btn boton sgt" id="sgt3">Next</a>
-				</div>
+				<a class="btn next" id="sgt3">Next</a>
 			</div>
 		</section>
 		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
