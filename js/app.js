@@ -6,26 +6,32 @@ var cargaPag = function(){
 	$("#dig1").focus();
 	$(".cnum").keyup(saltaFocus);
 	$("#sgt3").click(valDatos);
-	if (navigator.geolocation){
-		navigator.geolocation.getCurrentPosition(todoBien, hayError);
+	var esRuta = location.href.indexOf("map.html");
+	if (esRuta > 0){
+		if (navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(todoBien, hayError);
+		}
 	}
 	$("#contacto").click(aparecePerfil);
 	$("#mitad").click(apareceMap);
+	$(".nombreUs").text(localStorage.getItem("nombre") +" "+localStorage.getItem("apellido"));
+	$("#resend").click(generarCod);
+	// $("#pick").click(generarDirec);
 }
-
-$(document).ready(cargaPag);
 var entra = true;
+$(document).ready(cargaPag);
 
 var validar = function(e){
 	var tecla = e.keyCode;
 	if((tecla >= 48 && tecla <= 57) || tecla == 8){
 		return true;
 	}
-	else
+	else 
 		return false;
 }
 var comprobar = function(e){
 	var caracteres = $(e.target).val().length;
+	var tecla = e.keyCode;
 	if (caracteres == 9){
 		$("#sgt1").attr("href", "verify.html");
 		$("#sgt1").click(generarCod);
@@ -49,7 +55,10 @@ var generarCod = function(){
 		var obtNum = $("#numeros").val();
 		localStorage.setItem("celular", obtNum);
 
-		entra = false;
+		var rutaVeri = local.href.indexOf("verify.html");
+		if (rutaVeri < 0) {
+			entra = false;
+		}
 	}
 }
 var compararCodigo = function(){
@@ -63,13 +72,13 @@ var compararCodigo = function(){
 	var codigoRec = iniciales + juntar;
 
 	if(pridig.length == 0 || segdig.length == 0 || terdig.length == 0){
-		alert("Ingrese su código porfavor");
+		sweetAlert("Ingrese su código porfavor");
 	}
 	else if(obtenCod == codigoRec){
 		$("#sgt2").attr("href","datos.html");
 	}
 	else
-		alert("Código invalido");
+		sweetAlert("Código invalido");
 }
 var saltaFocus = function(e){
 	if($(e.target).val().trim().length == 1){
@@ -82,27 +91,33 @@ var saltaFocus = function(e){
 var valDatos = function(){
 	var cumple = true;
 	if($("#nomb").val().trim().length == 0 || $("#apell").val().trim().length == 0 || $("#email").val().trim().length == 0) {
-	 	alert("Complete todos los espacios");
+	 	swal({ text: "Complete todos los espacios",    closeOnConfirm: false });
 	 	cumple = false;
 	}
 	if(($("#nomb").val().trim().length < 3 || $("#nomb").val().trim().length > 21) || ($("#apell").val().trim().length < 3 || $("#apell").val().trim().length > 21)){
-		alert("Complete bien sus datos");
+		sweetAlert("Complete bien sus datos");
 		cumple = false;
 	}
 	if(($("#email").val().trim().length < 6 || $("#email").val().trim().length > 51)){
-		alert("Ingrese un correo válido");
+		sweetAlert("Ingrese un correo válido");
 		cumple = false;
 	}
 	var regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 	if (!regexEmail.test($("#email").val())){
-		alert("Ingrese un correo válido");
+		sweetAlert("Ingrese un correo válido");
 		cumple = false;
 	}
 	if ($("#checkbox").is(":checked") == false){
-		alert("Acepte los terminos y condiciones");
+		sweetAlert("Acepte los terminos y condiciones");
 		cumple = false;
 	}
 	if (cumple){
+		var obtNomb = $("#nomb").val();
+		localStorage.setItem("nombre",obtNomb);
+
+		var obtApel = $("#apell").val();
+		localStorage.setItem("apellido",obtApel);
+
 		$("#sgt3").attr("href", "map.html");
 	}
 }
@@ -130,7 +145,7 @@ var todoBien = function(pos){
 	});
 }
 var hayError = function (error){
-	alert("ERROR");
+	swal("ERROR");
 }
 var aparecePerfil = function(){
 	$("#mitad").removeClass("ocultar");
