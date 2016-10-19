@@ -141,19 +141,19 @@
 	margin: 23%;
 }
 .logo2{
-	width: 50px;
+	width: 20%;
 	height: 50px;
 	position: absolute;
 	z-index: 100;
 	top: 10px;
-	left: 43%;
+	margin: 0 40%;
 }
 .pack-btns{
 	position: absolute;
 	z-index: 100;
 	bottom: 0;
-	margin: 2% 5%;
-	width: 90%;
+	margin: 2% 3%;
+	width: 95%;
 }
 .rect{
 	border: 1px solid #bbb;
