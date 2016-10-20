@@ -17,9 +17,11 @@ var cargaPag = function(){
 	$(".nombreUs").text(localStorage.getItem("nombre") +" "+localStorage.getItem("apellido"));
 	$("#resend").click(generarCod);
 	$("#pick").click(generarDirec);
-	$("#dire").click(limparInput);
+	$("#dire").dblclick(limparInput);
+	// $(".input").keyup(validarDatos);
 }
 var entra = true;
+var conta = 0; 
 $(document).ready(cargaPag);
 
 var validar = function(e){
@@ -90,27 +92,39 @@ var saltaFocus = function(e){
 		$(e.target).parent().prev().children().focus();
 	}
 }
+// var validarDatos = function(e){
+// 	var key = e.keyCode;
+// 	var cumple = true;
+// 	conta++;
+
+// 	if (conta < 3 || key == 8){
+// 		$(this).addClass("ipt-error"); 
+// 	}
+// 	else{
+// 		$(this).removeClass("ipt-error");
+// 	}
+// }
 var valDatos = function(){
 	var cumple = true;
 	if($("#nomb").val().trim().length == 0 || $("#apell").val().trim().length == 0 || $("#email").val().trim().length == 0) {
-	 	swal({ text: "Complete todos los espacios",    closeOnConfirm: false });
+	 	alert("Complete todos los espacios");
 	 	cumple = false;
 	}
 	if(($("#nomb").val().trim().length < 3 || $("#nomb").val().trim().length > 21) || ($("#apell").val().trim().length < 3 || $("#apell").val().trim().length > 21)){
-		sweetAlert("Complete bien sus datos");
+		alert("Cantidad de caracteres invalidos de nombre o apellido");
 		cumple = false;
 	}
 	if(($("#email").val().trim().length < 6 || $("#email").val().trim().length > 51)){
-		sweetAlert("Ingrese un correo válido");
+		alert("Cantidad de caracteres invalidos de email");
 		cumple = false;
 	}
 	var regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 	if (!regexEmail.test($("#email").val())){
-		sweetAlert("Ingrese un correo válido");
+		alert("Ingrese un correo válido");
 		cumple = false;
 	}
 	if ($("#checkbox").is(":checked") == false){
-		sweetAlert("Acepte los terminos y condiciones");
+		alert("Acepte los terminos y condiciones");
 		cumple = false;
 	}
 	if (cumple){
@@ -125,7 +139,7 @@ var valDatos = function(){
 }
 var todoBien = function(pos){
 	var lat = pos.coords.latitude;
-	var lon = pos.coords.longitude;
+	var lon = pos.coords.longitude; 
 	var latlon = new google.maps.LatLng(lat, lon);
 	$("#map").addClass("tamanoMapa");
 

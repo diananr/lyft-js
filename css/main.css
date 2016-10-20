@@ -108,6 +108,9 @@
 	border:none;
 	background-color:white;
 }
+.ipt-error{
+	border: 1px solid red;
+}
 /*--------FIN DATOS-------------------------*/
 .tamanoMapa{
 	width: 100%;
