@@ -17,6 +17,7 @@ var cargaPag = function(){
 	$(".nombreUs").text(localStorage.getItem("nombre") +" "+localStorage.getItem("apellido"));
 	$("#resend").click(generarCod);
 	$("#pick").click(generarDirec);
+	$("#dire").click(limparInput);
 }
 var entra = true;
 $(document).ready(cargaPag);
@@ -48,6 +49,7 @@ var generarCod = function(){
 			var nums = Math.round(Math.random()*9);
 			codigo += nums;
 		}
+
 		alert(codigo);
 
 		localStorage.setItem("guardarCod", codigo);
@@ -72,13 +74,13 @@ var compararCodigo = function(){
 	var codigoRec = iniciales + juntar;
 
 	if(pridig.length == 0 || segdig.length == 0 || terdig.length == 0){
-		sweetAlert("Ingrese su código porfavor");
+		swal("Ingrese su código porfavor");
 	}
 	else if(obtenCod == codigoRec){
 		$("#sgt2").attr("href","datos.html");
 	}
 	else
-		sweetAlert("Código invalido");
+		swal("Código invalido");
 }
 var saltaFocus = function(e){
 	if($(e.target).val().trim().length == 1){
@@ -124,7 +126,7 @@ var valDatos = function(){
 var todoBien = function(pos){
 	var lat = pos.coords.latitude;
 	var lon = pos.coords.longitude;
-	var latlon= new google.maps.LatLng(lat, lon);
+	var latlon = new google.maps.LatLng(lat, lon);
 	$("#map").addClass("tamanoMapa");
 
 	var misOpciones = {
@@ -143,6 +145,16 @@ var todoBien = function(pos){
 		map: mapa,
 		title: "Estas aqui"
 	});
+
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode({"latLng":latlon},direcActual);
+}
+var direcActual = function(resultado, estado){
+	if (estado == google.maps.GeocoderStatus.OK){
+		if (resultado[0]){
+			$("#dire").val(resultado[0].formatted_address);
+		}
+	}
 }
 var hayError = function (error){
 	swal("ERROR");
@@ -167,8 +179,12 @@ var dirResultado = function(resultado, estado){
 
 		var mapa = new google.maps.Map(document.getElementById("map"), opMap);
 		mapa.fitBounds(resultado[0].geometry.viewport);
-		var markerOptions = { position: results[0].geometry.location }
+
+		var markerOptions = { position: resultado[0].geometry.location }
         var marker = new google.maps.Marker(markerOptions);
         marker.setMap(mapa);
 	}
+}
+var limparInput = function(){
+	$("#dire").val("");
 }
