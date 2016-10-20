@@ -18,7 +18,21 @@ var cargaPag = function(){
 	$("#resend").click(generarCod);
 	$("#pick").click(generarDirec);
 	$("#dire").dblclick(limparInput);
-	// $(".input").keyup(validarDatos);
+	$("#inputFile").change(cambiarFoto);
+	var fotoPerfil = localStorage.getItem("guarFoto");
+	var nombre = localStorage.getItem("nombre");
+	var apellido = localStorage.getItem("apellido");
+	var correo = localStorage.getItem("email");
+	if (fotoPerfil != null) {
+		$("#fotoGuar").attr("src", fotoPerfil);
+		$("#fotoprev").attr("src", fotoPerfil);
+		$("#semiFoto").attr("src", fotoPerfil);
+	}
+	if (nombre != null && apellido != null && correo != null) {
+		$("#name").val(nombre);
+		$("#lastname").val(apellido);
+		$("#email").val(correo);
+	}
 }
 var entra = true;
 var conta = 0; 
@@ -76,13 +90,13 @@ var compararCodigo = function(){
 	var codigoRec = iniciales + juntar;
 
 	if(pridig.length == 0 || segdig.length == 0 || terdig.length == 0){
-		swal("Ingrese su código porfavor");
+		swal("Enter your code");
 	}
 	else if(obtenCod == codigoRec){
 		$("#sgt2").attr("href","datos.html");
 	}
 	else
-		swal("Código invalido");
+		swal("Invalid code");
 }
 var saltaFocus = function(e){
 	if($(e.target).val().trim().length == 1){
@@ -92,39 +106,27 @@ var saltaFocus = function(e){
 		$(e.target).parent().prev().children().focus();
 	}
 }
-// var validarDatos = function(e){
-// 	var key = e.keyCode;
-// 	var cumple = true;
-// 	conta++;
-
-// 	if (conta < 3 || key == 8){
-// 		$(this).addClass("ipt-error"); 
-// 	}
-// 	else{
-// 		$(this).removeClass("ipt-error");
-// 	}
-// }
 var valDatos = function(){
 	var cumple = true;
 	if($("#nomb").val().trim().length == 0 || $("#apell").val().trim().length == 0 || $("#email").val().trim().length == 0) {
-	 	alert("Complete todos los espacios");
+	 	alert("Complete all fields");
 	 	cumple = false;
 	}
 	if(($("#nomb").val().trim().length < 3 || $("#nomb").val().trim().length > 21) || ($("#apell").val().trim().length < 3 || $("#apell").val().trim().length > 21)){
-		alert("Cantidad de caracteres invalidos de nombre o apellido");
+		alert("Invalid number of characters in name or lastname");
 		cumple = false;
 	}
 	if(($("#email").val().trim().length < 6 || $("#email").val().trim().length > 51)){
-		alert("Cantidad de caracteres invalidos de email");
+		alert("Invalid number of characters in email");
 		cumple = false;
 	}
 	var regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 	if (!regexEmail.test($("#email").val())){
-		alert("Ingrese un correo válido");
+		alert("Enter a valid email");
 		cumple = false;
 	}
 	if ($("#checkbox").is(":checked") == false){
-		alert("Acepte los terminos y condiciones");
+		alert("Accept terms and conditions");
 		cumple = false;
 	}
 	if (cumple){
@@ -133,6 +135,9 @@ var valDatos = function(){
 
 		var obtApel = $("#apell").val();
 		localStorage.setItem("apellido",obtApel);
+
+		var obtEmail = $("#email").val();
+		localStorage.setItem("email", obtEmail);
 
 		$("#sgt3").attr("href", "map.html");
 	}
@@ -157,7 +162,7 @@ var todoBien = function(pos){
 	var marcador = new google.maps.Marker({
 		position: latlon,
 		map: mapa,
-		title: "Estas aqui"
+		title: "You are here"
 	});
 
 	var geocoder = new google.maps.Geocoder();
@@ -201,4 +206,17 @@ var dirResultado = function(resultado, estado){
 }
 var limparInput = function(){
 	$("#dire").val("");
+}
+var cambiarFoto = function(e){
+	if(e.target.files && e.target.files[0]){
+		var reader = new FileReader();
+
+		reader.onload = function(e){
+			var guardarFoto = e.target.result;
+			$("#fotoprev").attr("src", guardarFoto);
+			localStorage.setItem("guarFoto", guardarFoto);
+		}
+		reader.readAsDataURL(e.target.files[0]);
+
+	}
 }

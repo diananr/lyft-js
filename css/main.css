@@ -110,6 +110,7 @@
 }
 .ipt-error{
 	border: 1px solid red;
+	box-shadow: 0px 0px 20px 0px rgba(237,133,124,1);
 }
 /*--------FIN DATOS-------------------------*/
 .tamanoMapa{
@@ -241,4 +242,19 @@
 }
 .texto{
 	margin-left: 2%;
+}
+/*--------FIN PERFIL--------*/
+.rect-foto{
+	border: 1px solid #bbb;
+	margin: 2% 10%;
+	width: 80%;
+}
+
+.mt-21 {
+	margin-top: 21px;
+}
+.fotoRect{
+	width: 30%;
+	height: 80px;
+	margin: 2% 0;
 }
